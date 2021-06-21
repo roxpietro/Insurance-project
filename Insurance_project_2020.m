@@ -246,7 +246,7 @@ SCR_B_lapse=max([SCR_B_lapse_up,SCR_B_lapse_down,SCR_B_lapse_mass]);
 
 %% CAT Scénario:
 
-qx_cat=[qx(1)*1.0015; qx(2:end)];
+qx_cat=[qx(1)+0.0015; qx(2:end)];
 
 
 % Case A:
