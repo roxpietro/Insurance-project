@@ -36,13 +36,13 @@ tic, EquitySimulation(Nbtraj,Nbstep,S0,rates,sigma,T), toc
 
 % Equity on time steps
 dt=T/Nbstep;                      % time step
-Equity_plain=SimEquity(:,1:1/dt:Nbstep+1)';
+Equity_plain=SimEquity(:,1:1/dt:Nbstep+1)'; %che senso ha avere una 500*1000?
 
 %% The Bond :
 
 t=(1:T)';                                  % time
 DF=(1+rates).^-t;                          % discount factors
-spread=-log(B0/(N*DF(end)))/T;             % spread
+spread=-log(B0/(N*DF(end)))/T; %non sono sicuro di questa formula            % spread
 % Bond prices
 Bond_plain=BondPricing(rates,T,N,spread);
 

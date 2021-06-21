@@ -20,7 +20,7 @@ if flag== "CaseA"
     C=max(C0,F_prime);
     P=1;    
     Pi=[];  
-    for i=1:T
+    for i=1:T %questo for si può togliere e fare tutto vettorialmente 
       %Probability of paying without taking into consideration staying alive at maturity
       Pi=[Pi,(qx(i)+lx(i)*(1-qx(i)))*P]; 
       % No lapse No dying in the trajectory
