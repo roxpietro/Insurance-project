@@ -14,7 +14,7 @@ F_prime = F(2:end,:)-fees;     %F_t'=F_t-f_t where the fees f_t=F_(t-1)*1.5%
 
 
 
-if flag== "CaseA"
+if flag == "CaseA"
     Value=0;
     Mac=0;
     C=max(C0,F_prime);

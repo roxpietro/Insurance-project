@@ -18,9 +18,9 @@ S0= 200;    % Equity price at  t_0
 sigma=0.2;  % Volatility 
 
 % Rates from EIOPA IT with VA 31.03.20
-rates=xlsread('EIOPA_RFR_20200331_Term_Structures',4,'S11:S20'); 
+rates=xlsread('EIOPA_RFR_20210331_Term_Structures',4,'S11:S20'); 
 % Probability of death (per thousand) ISTA 2017
-qx=xlsread('ISTA_2017_male',1,'E68:E77')/1000;
+qx=xlsread('ISTAT 2018 male',1,'E68:E77')/1000;
 % Flat annual lapse rates 
 lx=0.05*ones(size(qx)); 
 
@@ -63,7 +63,7 @@ BOF_B_plain=Asset_plain-Liabilities_B_plain;                                    
 %% Stressed Scénarios :
 %% Upward interest rate Scénario:
 
-rates_up = xlsread('EIOPA_RFR_20200331_Term_Structures', 7, 'S11:S20');
+rates_up = xlsread('EIOPA_RFR_20210331_Term_Structures', 7, 'S11:S20');
 % Bond prices:
 Bond_up=BondPricing(rates_up,T,N,spread);
 % The Equity:
