@@ -14,9 +14,9 @@ F_prime = F(2:end)-fees;
 
 
 if flag == "CaseA"
-    C = max(C0,F_prime)
+    C = max(C0,F_prime);
 else
-    C = F_prime
+    C = F_prime;
 end
 
 Value=0;
