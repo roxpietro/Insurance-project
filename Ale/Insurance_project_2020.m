@@ -24,7 +24,7 @@ qx=xlsread('ISTA_2017_male',1,'E68:E77')/1000;
 % Flat annual lapse rates 
 lx=0.05*ones(size(qx)); 
 
-%% Basic scénario :
+%% Basic scÃ©nario :
 %% The Equity :
 
 Nbtraj=1000;    %Number of trajectories
@@ -60,8 +60,8 @@ BOF_A_plain=Asset_plain-Liabilities_A_plain;                                    
 [Liabilities_B_plain,DurL_B_plain]=ComputeLiabilities(F_plain,rates,C0,T,lx,qx,flag_B);            % Liabilities
 BOF_B_plain=Asset_plain-Liabilities_B_plain;                                                        % Own fund
 
-%% Stressed Scénarios :
-%% Upward interest rate Scénario:
+%% Stressed ScÃ©narios :
+%% Upward interest rate ScÃ©nario:
 
 rates_up = xlsread('EIOPA_RFR_20200331_Term_Structures', 7, 'S11:S20');
 % Bond prices:
@@ -85,7 +85,7 @@ Asset_up=B0_up+S0;        % Asset
 [BOF_B_up,dBOF_B_up,SCR_B_up]=SolvencyComputation(Asset_up,BOF_B_plain,F_up,rates_up,C0,T,lx,qx,flag_B);
 
 
-%%  Downward interest rate Scénario :
+%%  Downward interest rate ScÃ©nario :
 
 
 rates_down = xlsread('EIOPA_RFR_20200331_Term_Structures',8, 'S11:S20');
@@ -117,7 +117,7 @@ SCR_A_interest=max(SCR_A_down,SCR_A_up);
 SCR_B_interest=max(SCR_B_down,SCR_B_up);
 
 
- %% Stressed Equity Scénario :
+ %% Stressed Equity ScÃ©nario :
  
  Equity_shock_type1=0.39;
  S0_shocked= S0*(1-Equity_shock_type1);
@@ -145,7 +145,7 @@ Asset_equity=B0+S0_shocked;           % Asset
 [BOF_B_Equity,dBOF_B_Equity,SCR_B_Equity]=SolvencyComputation(Asset_equity,BOF_B_plain,F_Equity,rates,C0,T,lx,qx,flag_B);
 
 
- %% Stressed spread Scénario :
+ %% Stressed spread ScÃ©nario :
  
  % Credit quality is AAA which is the column 0 and Maturity is 10Y
  
@@ -178,7 +178,7 @@ dBOF_B_spread=f_spread*B0 +Delta_Liabilities_B;
 BOF_B_spread=BOF_B_plain-dBOF_B_spread;
 SCR_B_spread=max(dBOF_B_spread,0);
 
-%% Stressed mortality Scénario :
+%% Stressed mortality ScÃ©nario :
 
 qx_shocked=1.15*qx;
 
@@ -194,7 +194,7 @@ Asset_mortality=Asset_plain;
 [BOF_B_mortality,dBOF_B_mortality,SCR_B_mortality]=SolvencyComputation(Asset_mortality,BOF_B_plain,F_plain,rates,C0,T,lx,qx_shocked,flag_B);
 
 
-%% Stressed lapse Scénario:
+%% Stressed lapse ScÃ©nario:
 
 lx_up=min(1.5*lx,1);
 lx_down=max(0.5*lx,lx-0.2);
@@ -244,7 +244,7 @@ Asset_lapse=Asset_plain;
 SCR_B_lapse=max([SCR_B_lapse_up,SCR_B_lapse_down,SCR_B_lapse_mass]);
 
 
-%% CAT Scénario:
+%% CAT ScÃ©nario:
 
 qx_cat=[qx(1)+0.0015; qx(2:end)];
 
