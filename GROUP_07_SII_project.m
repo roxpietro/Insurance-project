@@ -250,14 +250,15 @@ qx_cat=[qx(1)+0.0015; qx(2:end)];
 
 
 % Case A:
-Asset_CAT=Asset_plain;
-[BOF_A_cat,dBOF_A_cat,SCR_A_cat]=SolvencyComputation(Asset_CAT,BOF_A_plain,F_plain,rates,C0,T,lx,qx_cat,flag_A);
 [Liabilities_A_cat,DurL_A_cat]=ComputeLiabilities(F_plain,rates,C0,T,lx,qx_cat,flag_A);
 
+[BOF_A_cat,dBOF_A_cat,SCR_A_cat]=SolvencyComputation(F0,BOF_A_plain,Liabilities_A_cat);
+
 % Case B:
-Asset_CAT=Asset_plain;
-[BOF_B_cat,dBOF_B_cat,SCR_B_cat]=SolvencyComputation(Asset_CAT,BOF_B_plain,F_plain,rates,C0,T,lx,qx_cat,flag_B);
 [Liabilities_B_cat,DurL_B_cat]=ComputeLiabilities(F_plain,rates,C0,T,lx,qx_cat,flag_B);
+
+[BOF_B_cat,dBOF_B_cat,SCR_B_cat]=SolvencyComputation(F0,BOF_B_plain,Liabilities_B_cat);
+
 
 
 %% LIFE Solvency Capital Requirement:
@@ -266,11 +267,13 @@ Correlations_life=[1 0 0.25; 0 1 0.25; 0.25 0.25 1];
 
 % Case A:
 SCR_A_LIFE=[SCR_A_mortality; SCR_A_lapse; SCR_A_cat];
+
 SCR_A_life=sqrt(SCR_A_LIFE'*Correlations_life*SCR_A_LIFE);
 
 % Case B:
 
 SCR_B_LIFE=[SCR_B_mortality; SCR_B_lapse; SCR_B_cat];
+
 SCR_B_life=sqrt(SCR_B_LIFE'*Correlations_life*SCR_B_LIFE);
 
 
@@ -285,14 +288,14 @@ Correlations_interest_down=[1 0.5 0.5; 0.5 1 0.75; 0.5 0.75 1];
 SCR_A_MARKET=[SCR_A_interest; SCR_A_Equity; SCR_A_spread];
 SCR_A_MARKET_interest_up=sqrt(SCR_A_MARKET'*Correlations_interest_up*SCR_A_MARKET);
 SCR_A_MARKET_interest_down=sqrt(SCR_A_MARKET'*Correlations_interest_down*SCR_A_MARKET);
+
 SCR_A_market=max(SCR_A_MARKET_interest_down,SCR_A_MARKET_interest_up);
-
-
 
 % Case B:
 SCR_B_MARKET=[SCR_B_interest; SCR_B_Equity; SCR_B_spread];
 SCR_B_MARKET_interest_up=sqrt(SCR_B_MARKET'*Correlations_interest_up*SCR_B_MARKET);
 SCR_B_MARKET_interest_down=sqrt(SCR_B_MARKET'*Correlations_interest_down*SCR_B_MARKET);
+
 SCR_B_market=max(SCR_B_MARKET_interest_down,SCR_B_MARKET_interest_up);
 
 
@@ -300,11 +303,9 @@ SCR_B_market=max(SCR_B_MARKET_interest_down,SCR_B_MARKET_interest_up);
 
 Correlations_BSCR=[1 0.25; 0.25 1];
 
-
 % Case A:
 SCR__A=[SCR_A_market SCR_A_life]';
 BSCR_A=sqrt(SCR__A'*Correlations_BSCR*SCR__A);
-
 
 % Case B:
 SCR__B=[SCR_B_market SCR_B_life]';
