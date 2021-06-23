@@ -224,21 +224,19 @@ SCR_A_lapse=max([SCR_A_lapse_up,SCR_A_lapse_down,SCR_A_lapse_mass]);
 % Case B:
 
 % lapse up
+F0=Asset_plain;
+[BOF_B_lapse_up,dBOF_B_lapse_up,SCR_B_lapse_up]=SolvencyComputation(F0,BOF_B_plain,F_plain,rates,C0,T,lx_up,qx,flag_B);
 [Liabilities_B_lapse_up,DurL_B_lapse_up]=ComputeLiabilities(F_plain,rates,C0,T,lx_up,qx,flag_B);
 
-[BOF_B_lapse_up,dBOF_B_lapse_up,SCR_B_lapse_up]=SolvencyComputation(F0,BOF_B_plain,Liabilities_B_lapse_up);
-
 % lapse down
+F0=Asset_plain;
+[BOF_B_lapse_down,dBOF_B_lapse_down,SCR_B_lapse_down]=SolvencyComputation(F0,BOF_B_plain,F_plain,rates,C0,T,lx_down,qx,flag_B);
 [Liabilities_B_lapse_down,DurL_B_lapse_down]=ComputeLiabilities(F_plain,rates,C0,T,lx_down,qx,flag_B);
 
-[BOF_B_lapse_down,dBOF_B_lapse_down,SCR_B_lapse_down]=SolvencyComputation(F0,BOF_B_plain,Liabilities_B_lapse_down);
-
-
 % lapse mass
+F0=Asset_plain;
+[BOF_B_lapse_mass,dBOF_B_lapse_mass,SCR_B_lapse_mass]=SolvencyComputation(F0,BOF_B_plain,F_plain,rates,C0,T,lx_mass,qx,flag_B);
 [Liabilities_B_lapse_mass,DurL_B_lapse_mass]=ComputeLiabilities(F_plain,rates,C0,T,lx_mass,qx,flag_B);
-
-[BOF_B_lapse_mass,dBOF_B_lapse_mass,SCR_B_lapse_mass]=SolvencyComputation(F0,BOF_B_plain,Liabilities_B_lapse_mass);
-
 
 
 SCR_B_lapse=max([SCR_B_lapse_up,SCR_B_lapse_down,SCR_B_lapse_mass]);
