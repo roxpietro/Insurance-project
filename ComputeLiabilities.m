@@ -1,16 +1,16 @@
 function    [Value,Mac_Duration]=ComputeLiabilities(F,r,C0,T,lx,qx,flag)
 
 
-% Function that Computes the Liabilities  and the Macaulay Duration 
+% Function that Computes the Liabilities and the Macaulay Duration 
 
 % time:
-t=(1:T)';                
+t=(1:T)';
 % discount factors:
 DF=(1+r).^-t;
 
 % Compute the fees:
-fees = F(1:end-1)*3/100;     
-F_prime = F(2:end)-fees;     
+fees = F(1:end-1)*3/100;
+F_prime = F(2:end)-fees;
 
 
 if flag == "CaseA"
