@@ -126,8 +126,7 @@ SCR_B_interest = max(SCR_B_down,SCR_B_up);
 
 %% Stressed Equity Scénario :
  
-% we add the symmetric adjustment 
-Equity_shock_type1=0.39 + 0.036;
+Equity_shock_type1=0.39;
 
 
 
