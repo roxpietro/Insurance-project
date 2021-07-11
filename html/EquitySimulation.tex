@@ -1,0 +1,74 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Generate the B.M
+   \item Inizialitation
+   \item Compute Equity using GBM
+\end{itemize}
+\begin{verbatim}
+function    SimEquity=EquitySimulation(N,S0,fwd,sigma,T)
+\end{verbatim}
+\begin{verbatim}
+%function that simulate the equity using the GBM model
+
+% OUTPUT : vector of the simulated equity per year
+
+% INPUT:
+%N:      Number of samples
+%S0:     Equity at time t=0
+%sigma:  Volatility
+%fwd:    forward from the EOPIA
+%T:      Period
+\end{verbatim}
+
+
+\subsection*{Generate the B.M}
+
+\begin{verbatim}
+dt=1;
+dW = sqrt(dt)*randn(N,T);
+\end{verbatim}
+
+
+\subsection*{Inizialitation}
+
+\begin{verbatim}
+SimEquity=zeros(N,T+1);
+SimEquity(:,1)=S0;
+\end{verbatim}
+
+
+\subsection*{Compute Equity using GBM}
+
+\begin{verbatim}
+for t=2:T+1
+SimEquity(:,t) = SimEquity(:,t-1).*exp( (fwd(t-1)-0.5*sigma^2)*dt+sigma*dW(:,t-1));
+end
+
+SimEquity = mean(SimEquity,1)';
+\end{verbatim}
+\begin{verbatim}
+end
+\end{verbatim}
+
+
+
+\end{document}
+

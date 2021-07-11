@@ -1,0 +1,41 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    \begin{verbatim}
+function   Bond=BondPricing(fwd,T,BT,spread)
+
+
+%function that computes the Bond prices at different instants
+%Output:
+%Bond = vector of bond prices per year
+
+% T          : Time to maturity
+% BT         : Face value
+% fwd        : forward from EIOPA 20200331
+% spread     : Spread
+
+Bond = zeros(T+1,1);
+Bond(T+1)=BT;
+for i=T:-1:1
+   Bond(i) = Bond(i+1) * exp( -(fwd(i) + spread) );
+end
+
+end
+\end{verbatim}
+
+
+
+\end{document}
+

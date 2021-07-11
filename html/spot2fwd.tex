@@ -1,0 +1,29 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    \begin{verbatim}
+function fwd = spot2fwd(r,T)
+
+t=linspace(1,T,T)'; % time every year
+fwd =-log( ( 1+r(1:end-1) ).^(t(1:end-1) ) ./ ( 1+r(2:end) ).^(t(2:end)) ); %forward rates
+fwd=[ -log( (1+r(1))^(-1) ); fwd];
+
+end
+\end{verbatim}
+
+
+
+\end{document}
+
